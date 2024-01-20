@@ -1,0 +1,171 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+%misc libraries goes here
+\usepackage{fitch}
+
+\begin
+	 {document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name :  Deniz Karakoyun  \\ 
+Id Number :  2580678 \\ 
+
+% Write your answers below the section tags
+\section*{Answer 1}
+
+\textbf{1.a)} To determine if the statement is a tautology or contradiction, we'll create a truth table for $(p \to q) \oplus (p \land \neg q)$:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+p & q & $\neg q$ & $p \land \neg q$ & $p \to q$ & $(p \to q) \oplus (p \land \neg q)$ \\
+\hline
+T & T & F & F & T & T \\
+T & F & T & T & F & T \\
+F & T & F & F & T & T \\
+F & F & T & F & T & T \\
+\hline
+\end{tabular}
+\end{table}
+
+The truth table shows that $(p \to q) \oplus (p \land \neg q)$ is always true (T) ; so it's a \textbf{tautology}.\\
+
+\textbf{1.b)} To prove the propositional equivalence, we can use the given tables and laws: \\
+ \begin{table}[H]
+    \begin{tabular}{ccl|l}	
+    $ p  \to  ((q \lor \neg p) \to r ) $ & $\equiv $ & $ p  \to (\neg(q \lor \neg p) \lor r)$ & By using (If elimination)\textbf{Table 7} \\
+    & $\equiv $ & $ p \to ((\neg q \land p ) \lor r )$ & By using (De Morgan's laws) \textbf{ Table 6} \\
+    & $\equiv $ & $ \neg p \lor ((\neg q \land p )\lor r)  $ & By using (If elimination) \textbf{Table 7} \\
+    
+    & $\equiv $ & $ (\neg p \lor (\neg q \land p))  \lor r$ & By using (Associatative Law) \textbf{Table 6} \\
+    
+    & $\equiv $ & $  ((\neg p \lor \neg q) \land (\neg p \lor p)) \lor r $ & By using (Distributive Law) \textbf{Table 6} \\
+    
+    & $\equiv $ & $ ((\neg p \lor \neg q) \land T) \lor r  $ & By using (Negation Law) \textbf{Table 6} \\
+    & $\equiv $ & $ (\neg p \lor \neg q) \lor  r $ & By using (Identity Law)\textbf{Table 6} \\
+    & $\equiv $ & $ \neg (\neg p \lor \neg q) \to  r$ & By using (If introduction)\textbf{Table 7}\\
+    & $\equiv $ & $  ( p \land q) \to  r$ & By using (De Morgan's Law) \textbf{Table 6}\\
+    \end{tabular}
+\end{table}
+Thus, $ p  \to  ((q \lor \neg p) \to r ) $ and  $ (p \land q) \to r  $ are logically equivalent.\\
+
+\textbf{1.c)} Logical Equivalences: \\
+\\\textbullet{} $(p \land q) \to r \equiv (\neg p \land \neg q) \lor r$: \textbf{False} \\
+\textbullet{} $(p \land q) \lor (\neg p \land \neg q) \equiv p \oplus q$: \textbf{False}\\
+\textbullet{} $(p \lor q) \land (p \land \neg q) \equiv p$: \textbf{False} \\
+\textbullet{} $(p \lor q) \land (p \lor \neg q) \equiv p$: \textbf{True} \\
+\textbullet{} $p \oplus q \equiv \neg (p \leftrightarrow q)$: \textbf{True} \\
+
+\section*{Answer 2}
+
+a) Player Can plays in a team that plays in league L.  \\
+$\exists x (P(\text{Can}, x) \land T(x, L))$ \\
+ \\
+b) Every team in league S has at least one Turkish player. \\
+$\forall x (T(x, \text{S}) \to \exists y (P(y, x) \land  N(y, \text{Turkish})))$ \\
+ \\
+c) Every team in league S has exactly one rival, which is also in league S. \\
+$\forall x (T(x, S) \to \exists y (R(x, y) \land T(y, S) \land \forall z ((R(x, z) \land T(z, S) )\to (z = y))))$ \\
+ \\
+d) Team M has never won against a team with at least one English player. \\
+$\forall x (W(\text{M}, x) \to \neg \exists y (N(y, \text{English}) \land P(y, x)))$ \\
+ \\
+e) Exactly two Turkish players play on team G. \\
+$\exists x  \exists y((P(x, \text{G}) \land N(x, \text{Türk})) \land  (P(y, \text{G}) \land N(y, \text{Turkish})) \land x \neq y ) \land \forall z ((N(z, \text{Turkish}) \to \neg P(z, \text{G})) \land (z \neq x \land z \neq y))$ \\
+ \\
+f) There are some teams that play in more than one league. \\
+$\exists x \exists y \exists z(T(x, y) \land T(x, z)  \land (z \neq y))$ \\
+
+\section*{Answer 3}
+
+
+\begin{table}[H]
+	\centering
+	\caption{Proof of $p \rightarrow q, (r \land s) \rightarrow p, (r \land \neg q) \vdash \neg s$}
+	\begin{tabular}{lllclll}
+	\hline
+	\hline
+	$1.$ & & & $p \rightarrow q$ & \textit{premise} & & \\
+	$2.$ & & & $(r \land s) \rightarrow p$ & \textit{premise} & & \\
+	$3.$ & & & $(r \land \neg q)$ & \textit{premise} & & \\
+	
+	
+
+	\cline{2-7}
+	$4.$ &\multicolumn{1}{|c}{} & & $s$ & \textit{assumption} & &\multicolumn{1}{c|}{} \\
+	$5.$ &\multicolumn{1}{|c}{} & \multicolumn{1}{}{} & $r $ & $\land$e $3$ & &\multicolumn{1}{c|}{} \\
+	$6.$ &\multicolumn{1}{|c}{} & \multicolumn{1}{}{} & $\neg q$ & $\land$e $3$ & &\multicolumn{1}{c|}{} \\
+	$7.$ &\multicolumn{1}{|c}{} & \multicolumn{1}{}{} & $(r \land s)$ & $\land$i $4, 5$ & &\multicolumn{1}{c|}{} \\
+	$8.$ &\multicolumn{1}{|c}{} & \multicolumn{1}{}{    } & $ (r \land s) \rightarrow p$ & \textit{copy 2} & &\multicolumn{1}{c|}{} \\
+	$9.$ &\multicolumn{1}{|c}{} & \multicolumn{1}{}{} & $p$ & $\rightarrow$e $7,8$ & &\multicolumn{1}{c|}{} \\
+	$10.$ &\multicolumn{1}{|c}{} & \multicolumn{1}{}{} & $p \rightarrow q$ & \textit{copy 1} & &\multicolumn{1}{c|}{} \\
+	$11.$ &\multicolumn{1}{|c}{} & \multicolumn{1}{}{} & $q$ & $\rightarrow$e $9,10$ & &\multicolumn{1}{c|}{} \\
+	
+	$12.$ &\multicolumn{1}{|c}{} & & $\perp$ & $\neg$e $6,11$ & &\multicolumn{1}{c|}{} \\
+	\cline{2-7}
+	$13.$ & & & $\neg s$ & $\neg$i $4-12$ & & \\
+	\end{tabular}
+\end{table}
+
+
+
+
+
+
+\section*{Answer 4}
+
+
+\textbf{a)}  Converting sentences to logic:
+  \begin{align*}
+\textbullet{}&\text{Some students need to study for the exam in order to pass.} &&\equiv \exists x (P(x) \to S(x)) \\
+\textbullet{} &\text{Every student passed the exam.} &&\equiv \forall x P(x)
+\end{align*}\\
+
+
+\textbf{b)} 
+\begin{table}[H]
+	\centering
+	\caption{Proof of $ \forall x P(x) , \exists x (P(x) \to S(x)) \vdash \exists x S(x) $}
+	\begin{tabular}{lllclll}
+	\hline 
+	\hline
+		$1.$ & & & $ \forall x P(x) $ & \textit{premise} &  & \\ 
+		
+		$2.$ & & & $ \exists x (P(x) \to S(x))$ & \textit{premise} &  & \\ 
+		
+		
+		\cline{3-6}
+		 
+		$3.$ &\multicolumn{1}{c}{}  & \multicolumn{1}{|c}{} & $P(c) \to S(c) $ & \textit{assumption} & \multicolumn{1}{l|}{} & \multicolumn{1}{c}{} \\ 
+		
+		
+		$4.$ &\multicolumn{1}{c}{}  & \multicolumn{1}{|c}{} & $P(c)$ &$\forall $e $1$& \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+		
+	    
+	    $5.$ &\multicolumn{1}{c}{}  & \multicolumn{1}{|c}{} & $ S(c)$ &$\to$e $3,4$ & \multicolumn{1}{c|}{} & \multicolumn{1}{c}{} \\ 
+	    
+	   	    $6.$ &\multicolumn{1}{c}{}  & \multicolumn{1}{|c}{} & $\exists x S(x)$ &$\exists$i $5$ & \multicolumn{1}{l|}{} & \multicolumn{1}{}{} \\ 
+	    \cline{3-6}
+	    
+	    $7.$ &\multicolumn{1}{c}{}  &  & $\exists x S(x)$ &$\exists$e $2,3-6$ &  & \multicolumn{1}{c}{} \\ 
+	
+	\end{tabular}
+\end{table}
+
+
+\end{document} 
